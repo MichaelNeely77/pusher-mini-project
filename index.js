@@ -1,8 +1,6 @@
 var express = require('express')
-var app = express()
-
-
-
+var app = express();
+var path = require('path');
 var Pusher = require('pusher');
 
 var pusher = new Pusher({
@@ -13,12 +11,10 @@ var pusher = new Pusher({
   encrypted: true
 });
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 pusher.trigger('my-channel', 'my-event', {
   'message': 'hello world'
 });
-
-app.get('/', function(req,res) {
-    res.send('Hello World2')
-})
 
 app.listen(3000)
