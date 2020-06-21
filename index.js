@@ -17,11 +17,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.post('/comment', function (req, res) {
     console.log(req.body);
-    res.send(req.body);
+    var newMessage = {
+      name: req.body.name,
+      message: req.body.message
+    }
+    pusher.trigger('my-channel', 'my-event', newMessage);  
+
+    res.json({created: true});
 });
 
-pusher.trigger('my-channel', 'my-event', {
-  'message': 'hello world'
-});
+
+
 
 app.listen(3000)
