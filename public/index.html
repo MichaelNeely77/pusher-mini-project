@@ -1,34 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
     <!DOCTYPE html>
     <head>
-      <title>Pusher Test</title>
+      <title>Real Time Messages</title>
       <link rel="stylesheet" href="style.css">
-      <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
-      <script>
-    
-        // Enable pusher logging - don't include this in production
-        Pusher.logToConsole = true;
-    
-        var pusher = new Pusher('95ec86c745791e6b1b5f', {
-          cluster: 'us2',
-          encrypted: true
-        });
-    
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-          console.log(data);
-        });
-      </script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+      
+
+
     </head>
     <body>
-      <!-- <h1>Pusher Test</h1>
-      <p>
-        Try publishing an event to channel <code>my-channel</code>
-        with event name <code>my-event</code>.
-      </p> -->
+      <div class="container">
+        <h1>Pusher Test</h1>
+        <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
+        <script>
+      
+          // Enable pusher logging - don't include this in production
+          Pusher.logToConsole = true;
+      
+          var pusher = new Pusher('95ec86c745791e6b1b5f', {
+            cluster: 'us2',
+            encrypted: true
+          });
+      
+          var channel = pusher.subscribe('my-channel');
+          channel.bind('my-event', function(data) {
+            console.log(data);
+          });
+        </script>
+        <p>
+          Try publishing an event to channel <code>my-channel</code>
+          with event name <code>my-event</code>.
+        </p>
+      </div>
+
     </body>
     
     
