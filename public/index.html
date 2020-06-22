@@ -29,7 +29,8 @@
 
         <script src="https://js.pusher.com/6.0/pusher.min.js"></script>
         <script>
-      
+
+          (function() {
           // Enable pusher logging - don't include this in production
           Pusher.logToConsole = true;
       
@@ -39,13 +40,17 @@
           });
       
           var channel = pusher.subscribe('my-channel');
+          var messages = document.getElementById('messages');
           channel.bind('my-event', newComments);
+          document.querySelector('#mesSender').addEventListener('submit', addComment);
 
           function newComments(data) {
             console.log(data);
+            var el = document.createElement('div');
+            el.innerHTML = data.message + '<small> '+ data.name+'</small>';
+            messages.appendChild(el);
           }
 
-          document.querySelector('#mesSender').addEventListener('submit', addComment);
 
           function addComment(event) {
             event.preventDefault();
@@ -64,6 +69,7 @@
             }
             xhr.send(JSON.stringify(newComment));
           }
+        })();
         </script>
 
       </div>
